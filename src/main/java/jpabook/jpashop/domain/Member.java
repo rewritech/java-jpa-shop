@@ -1,9 +1,8 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -14,6 +13,9 @@ public class Member {
     private String city;
     private String street;
     private String zipcode;
+
+    @OneToMany(mappedBy = "member") // 실습을 위해 넣지 실무상 좋은 설계는 아님. 실제로는 회원객체 상관 없이 주문을 얻게끔 하자
+    private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
         return id;
